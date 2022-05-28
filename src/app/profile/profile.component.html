@@ -1,0 +1,24 @@
+<form class="form" #f="ngForm" (ngSubmit)="onSubmit(f)" ngNativeValidate>
+	<input type="text" name="firstName" [(ngModel)]="firstName" value="{{firstName}}" placeholder="firstName" required pattern="[A-Za-zА-Яа-яЁё]{3,15}"
+	 title="Name must contain only letters" />
+
+	<input type="text" name="lastName" [(ngModel)]="lastName" value="{{lastName}}" required pattern="[A-Za-zА-Яа-яЁё]{3,15}"
+	 title="Name must contain only letters" />
+
+	<input type="email" name="login" [(ngModel)]="login" value="{{login}}" required/>
+
+	<input type="date" name="birthDay" [(ngModel)]="birthDay" value="{{birthDay}}" />
+
+	<div class="row align-items-center">
+		<div class="col">
+			<input type="radio" name="sex" value="male" [(ngModel)]="sex" />
+			<label>male</label>
+		</div>
+		<div class="col">
+			<input type="radio" name="sex" value="female" [(ngModel)]="sex" />
+			<label>female</label>
+		</div>
+	</div>
+
+	<button type="submit">EDIT</button>
+</form>

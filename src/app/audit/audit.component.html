@@ -1,0 +1,10 @@
+<form>
+  <button type="submit" (click)="deletedTrains()">TRAINS</button>
+  <button type="submit" (click)="deletedStations()">STATION</button>
+  <button type="submit" (click)="audit()">AUDIT</button>
+</form>
+<form>
+  <app-table-train *ngIf="visibleTrain"></app-table-train>
+  <app-table-stations *ngIf="visibleStation"></app-table-stations>
+  <app-table-audit *ngIf="visibleAudit"></app-table-audit>
+</form>

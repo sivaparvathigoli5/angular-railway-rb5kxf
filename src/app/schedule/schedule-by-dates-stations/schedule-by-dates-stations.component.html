@@ -1,0 +1,159 @@
+<div class="active item">
+	<header class="masthead" style="background-image: url('/static/images/bg.png')">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-8 col-md-10 mx-auto">
+					<div class="site-heading">
+						<form class="form-horizontal login_box align-items-center">
+							<div class="row">
+								<div class="col form-group">
+									<label class="text-warning font-weight-bold">FROM</label>
+									<input id="stationDepartureSearchingByStationsAndDates" type="text" class="form-control text-dark text-xl-center" placeholder="DEPARTURE STATION"
+									 required autocomplete="off" list="stationsList">
+								</div>
+								<div class="col-1"></div>
+								<div class="col form-group">
+									<label class="text-warning font-weight-bold">TO</label>
+									<input id="stationArrivalSearchingByStationsAndDates" type="text" class="form-control text-center text-dark" placeholder="ARRIVAL STATION"
+									 required autocomplete="off" list="stationsList">
+								</div>
+								<div class="col-1"></div>
+								<div class="col form-group">
+									<label class="text-warning font-weight-bold">DATE DEPARTURE</label>
+									<input id="dateDepartureSearchingByStationsAndDates" type="date" class="form-control text-center" width="50" required>
+								</div>
+								<div class="col-1"></div>
+								<div class="col form-group">
+									<label class="text-warning font-weight-bold">DATE ARRIVAL</label>
+									<input id="dateArrivalSearchingByStationsAndDates" type="date" class="form-control text-center" width="50" required>
+								</div>
+							</div>
+							<div id="checkBoxId">
+								<input type="checkbox" id="with transfer" class="text-warning font-weight-normal">
+								<label class="text-warning font-weight-normal">with transfer</label>
+							</div>
+							<div class="text-center">
+								<button id="searchingBtnByStationsAndDates" type="button" class="btn btn-lg btn-outline-warning">search schedule
+                                        </button>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</header>
+</div>
+
+<table class="table table-hover table-dark">
+	<tbody class="text-warning text-center">
+		<tr *ngFor="let schedule of schedules; let i=index">
+			<th scope='row'>
+				<div>
+					<div>
+						<img src='static/images/trainIcoWarn.png'></div>
+					<label class='font-weight-normal'>
+            {{schedule.trainDepartureName}}
+            </label>
+				</div>
+			</th>
+			<td>
+				<br>
+				<div>
+					<label class='font-weight-normal'>
+            {{schedule.dateDeparture}} 
+            </label>
+				</div>
+				<div>
+					<label class='font-weight-bold'>
+            {{schedule.stationDepartureName}}
+            </label>
+				</div>
+			</td>
+			<td>
+				<div>
+					<label class='font-weight-light'>
+                  {{ getDelayBetweenTwoDates(schedule.dateDeparture, schedule.dateArrival)}} 
+                  </label>
+				</div>
+				<img src='static/images/arrow-13-xxl.png' width='50'>
+			</td>
+			<td>
+				<br>
+				<div>
+					<label class='font-weight-normal'>
+            {{schedule.dateIntermediateDeparture}} 
+            </label>
+				</div>
+				<div>
+					<label class='font-weight-bold'>
+            {{schedule.stationIntermediateName}} 
+            </label>
+				</div>
+			</td>
+			<td scope='row'>
+				<div>
+					<img src='static/images/hourglass.png'>
+				</div>
+				<br>
+				<label>
+                  {{getDelayBetweenTwoDates(schedule.dateIntermediateDeparture, schedule.dateIntermediateArrival)}} 
+                  </label>
+				<div>
+					<img src='static/images/share-option.png'>
+				</div>
+				<th scope='row'>
+					<div>
+						<div>
+							<img src='static/images/trainIcoWarn.png'>
+						</div>
+						<label class='font-weight-normal'>
+            {{schedule.trainArrivalName}} 
+            </label>
+					</div>
+				</th>
+				<td>
+					<br>
+					<div>
+						<label class='font-weight-normal'>
+            {{schedule.dateIntermediateArrival}} 
+            </label>
+					</div>
+					<div>
+						<label class='font-weight-bold'>
+            {{schedule.stationIntermediateName}} 
+            </label>
+					</div>
+				</td>
+				<td>
+					<div>
+						<label class='font-weight-light'>
+            {{getDelayBetweenTwoDates(schedule.dateDeparture, schedule.dateArrival)}} 
+            </label>
+					</div>
+					<img src='static/images/arrow-13-xxl.png' width='50'>
+				</td>
+				<td>
+					<br>
+					<div>
+						<label class='font-weight-normal'>
+            {{schedule.dateArrival }}
+            </label>
+					</div>
+					<div>
+						<label class='font-weight-bold'>
+            {{schedule.stationArrivalName}} 
+            </label>
+					</div>
+				</td>
+				<td>
+					<br>
+					<label>
+                 {{schedule.price }}
+                 </label>
+					<button class='btn btn-lg btn-outline-warning' (click)="FindTicketTransfer(schedule)">
+                   FIND TICKET
+                   </button>
+				</td>
+		</tr>
+	</tbody>
+</table>

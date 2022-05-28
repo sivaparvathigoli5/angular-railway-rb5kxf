@@ -1,0 +1,10 @@
+<form>
+  <button type="submit" (click)="trainSubmit()">Add train</button>
+  <button type="submit" (click)="stationSubmit()">Add station</button>
+  <button type="submit" (click)="scheduleSubmit()">Add schedule</button>
+</form>
+<form class="content">
+<app-add-schedule *ngIf="visibleSchedule"></app-add-schedule>
+<app-add-train *ngIf="visibleTrain"></app-add-train>
+<app-add-station *ngIf="visibleStation"></app-add-station>
+</form>
